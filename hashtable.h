@@ -17,8 +17,8 @@ HashTable();
 ~HashTable();
 
 bool retrieveCustomer(int ID, Customer*& customer);
-void insertItem(int key);
-void deleteItem(int key);
+void insertItem(String key);
+void deleteItem(String key);
 void buildHashTable(ifstream &infile);
 void printHash();
 private:
