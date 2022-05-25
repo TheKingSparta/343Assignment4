@@ -11,6 +11,12 @@
 using namespace std;
 
 class HashTable {
+  struct node{
+    Customer* data;
+    node* next;
+    
+    node(Customer* customer, node* n): data(customer), next(n) {};
+  };
 public:
 
 HashTable();
@@ -22,7 +28,9 @@ void deleteItem(String key);
 void buildHashTable(ifstream &infile);
 void printHash();
 private:
-int hash(int ID)
+int hash(int ID);
+int hashSize;
+ node* customerHash[hashSize];
 };
 
 #endif //ASSIGNMENT4_HASHTABLE_H
