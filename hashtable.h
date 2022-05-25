@@ -1,5 +1,5 @@
 /** hashtable.h
- * Defines a hashtable of customers that store has on record. Implemented using array of linked lists 
+ * Defines a hashtable of what customers' bought that store has on record. Implemented using array of linked lists 
  * Written by Aditya Duggirala
  *
  */
@@ -22,7 +22,7 @@ public:
 HashTable();
 ~HashTable();
 
-bool retrieveCustomer(int ID, Customer*& customer);
+bool retrieve(String key);
 void insertItem(String key);
 void deleteItem(String key);
 void buildHashTable(ifstream &infile);
