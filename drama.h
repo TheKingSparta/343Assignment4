@@ -16,9 +16,9 @@ using namespace std;
 
 class Drama:public Movie {
 public:
-   Drama(char genre);
+   Drama(int stock, string title, string director, int releaseYear);
+   Drama();
    ~Drama();
-   void setData(ifstream& f);
    
 };
 #endif //ASSIGNMENT4_DRAMA_H
