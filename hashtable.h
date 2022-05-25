@@ -27,7 +27,7 @@ HashTable();
 // finding item in hashtable
 bool retrieve(String key); 
   
-void insertItem(String key);
+void insertItem(String key, void* data);
 void deleteItem(String key);
   
 // making hashtable from files containing data of customer and movies
