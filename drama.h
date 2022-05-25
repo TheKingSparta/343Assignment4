@@ -16,10 +16,12 @@ using namespace std;
 
 class Drama:public Movie {
 public:
-   // Constructor
+   //Constructor set to default values
    Drama(int stock, string title, string director, int releaseYear);
-   // default constructor from Movie
+   
+   //default constructor from Movie
    Drama();
+   
    //destructor
    ~Drama();
    
