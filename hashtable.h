@@ -24,15 +24,20 @@ public:
 HashTable();
 // destructor
 ~HashTable();
-
+// finding item in hashtable
 bool retrieve(String key); 
+  
 void insertItem(String key);
 void deleteItem(String key);
+  
+// making hashtable from files containing data of customer and movies
 void buildHashTable(ifstream &infile);
+  
+// show all contents in hashtable
 void printHash();
 private:
-int hash(int ID);
-int hashSize;
+int hash(int ID); // calculation to find remainder
+int hashSize; // max size of hashtable
  node* customerHash[hashSize]; // array of linked lists
 };
 
