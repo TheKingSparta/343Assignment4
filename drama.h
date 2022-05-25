@@ -20,8 +20,5 @@ public:
    ~Drama();
    void setData(ifstream& f);
    
-    bool operator== (const Movie &compare);
-    bool operator> (const Movie &compare);
-    bool operator< (const Movie &compare);
 };
 #endif //ASSIGNMENT4_DRAMA_H
