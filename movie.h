@@ -20,6 +20,10 @@ class Movie
         string getDirector() const;
         int getReleaseDate() const;
         int getStock() const;
+    
+       bool operator== (const Movie &compare);
+       bool operator> (const Movie &compare);
+       bool operator< (const Movie &compare);
 
         // display output function
         void display();
