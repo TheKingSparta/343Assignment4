@@ -11,6 +11,7 @@
 using namespace std;
 
 class HashTable {
+  // structure of linked list
   struct node{
     Customer* data;
     node* next;
@@ -19,10 +20,12 @@ class HashTable {
   };
 public:
 
+// constructor
 HashTable();
+// destructor
 ~HashTable();
 
-bool retrieve(String key);
+bool retrieve(String key); 
 void insertItem(String key);
 void deleteItem(String key);
 void buildHashTable(ifstream &infile);
@@ -30,7 +33,7 @@ void printHash();
 private:
 int hash(int ID);
 int hashSize;
- node* customerHash[hashSize];
+ node* customerHash[hashSize]; // array of linked lists
 };
 
 #endif //ASSIGNMENT4_HASHTABLE_H
