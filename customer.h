@@ -51,7 +51,7 @@ private:
 
    //The number of transactions (returns or check-outs) made by
    //the Customer.
-   int numbTransactions;
+   int numTransactions;
 };
 
 #endif //ASSIGNMENT4_CUSTOMER_H
