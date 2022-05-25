@@ -16,7 +16,8 @@ class Comedy: public Movie {
 public:
    //Default constructor. Defined in Movie.h
    Comedy();
-
+    
+   // Destructor
    ~Comedy();
 
    //Constructor to set default values
