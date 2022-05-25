@@ -1,5 +1,5 @@
 /** hashtable.h
- * Defines a hashtable of customers that store has on record. Implemented using Arrays  
+ * Defines a hashtable of customers that store has on record. Implemented using linked lists 
  * Written by Aditya Duggirala
  *
  */
