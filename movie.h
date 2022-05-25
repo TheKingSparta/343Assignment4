@@ -21,6 +21,7 @@ class Movie
         int getReleaseDate() const;
         int getStock() const;
     
+       //overloaded operators
        bool operator== (const Movie &compare);
        bool operator> (const Movie &compare);
        bool operator< (const Movie &compare);
