@@ -13,10 +13,10 @@ using namespace std;
 class HashTable {
   // structure of linked list
   struct node{
-    Customer* data;
+     void* data;
     node* next;
     
-    node(Customer* customer, node* n): data(customer), next(n) {};
+    node(void* customer, node* n): data(customer), next(n) {};
   };
 public:
 
