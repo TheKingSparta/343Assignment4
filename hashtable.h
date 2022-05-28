@@ -8,34 +8,42 @@
 #define ASSIGNMENT4_HASHTABLE_H
 
 #include "customer.h"
-using namespace std;
+#include <string>
 
-class HashTable {
-  // structure of linked list
-  struct node{
-     void* data;
-    node* next;
-    
-    node(void* customer, node* n): data(customer), next(n) {};
-  };
+class HashTable
+{
+   // structure of linked list
+   struct node
+   {
+      void* data;
+      node* next;
+
+      node(void* customer, node* n) : data(customer), next(n)
+      {};
+   };
+
 public:
 
-// constructor
-HashTable();
-// destructor
-~HashTable();
-// finding item in hashtable
-bool retrieve(String key); 
-  
-void insertItem(String key, void* data);
-void deleteItem(String key);
-    
-// show all contents in hashtable
-void printHash();
+   // constructor
+   HashTable();
+
+   // destructor
+   ~HashTable();
+
+   // finding item in hashtable
+   bool retrieve(std::string key);
+
+   void insertItem(std::string key, void* data);
+
+   void deleteItem(std::string key);
+
+   // show all contents in hashtable
+   void printHash();
+
 private:
-int hash(int ID); // calculation to find remainder
-int hashSize; // max size of hashtable
- node* customerHash[hashSize]; // array of linked lists
+   int hash(int ID); // calculation to find remainder
+   int hashSize; // max size of hashtable
+   node* customerHash[]; // array of linked lists. Need to initialize in constructor
 };
 
 #endif //ASSIGNMENT4_HASHTABLE_H

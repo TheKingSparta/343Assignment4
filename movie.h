@@ -2,22 +2,22 @@
 #define MOVIE_H
 
 #include<iostream>
-using namespace std;
+#include<string>
 
 class Movie
 {
     public:
         // constructor
         Movie();
-        Movie(char movieCode, int stock, string director, string title, int releaseYear);
+        Movie(char movieCode, int stock, std::string director, std::string title, int releaseYear);
 
         // destructor
         ~Movie();
 
         // accessors
         char getMovieCode() const;
-        string getTitle() const;
-        string getDirector() const;
+        std::string getTitle() const;
+        std::string getDirector() const;
         int getReleaseDate() const;
         int getStock() const;
     
@@ -27,18 +27,20 @@ class Movie
        bool operator< (const Movie &compare);
 
         // display output function
-        void display();
+        void display() const;
 
         // mutators
         bool addStock(int);
         bool subtractStock(int);
 
+        std::string toString() const;
+
     protected:
         int stock;
         int releaseYear;
         char movieCode;
-        string title;
-        string director;
+        std::string title;
+        std::string director;
 };
 
 #endif //MOVIE_H

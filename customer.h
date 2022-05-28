@@ -10,7 +10,7 @@
 #define ASSIGNMENT4_CUSTOMER_H
 
 #include <string>
-#include "Movie.h"
+#include "movie.h"
 
 class Customer:public Movie {
 public:
@@ -23,7 +23,7 @@ public:
    void addHistory(Movie movie, std::string type);
 
    //Output the Customer's history to cout in chronological order
-   void outputHistory();
+   void outputHistory() const;
 
    //Default constructor. Sets ID to 0000, firstName "Default", lastName "Default"
    Customer();
@@ -41,7 +41,7 @@ private:
    std::string lastName;
 
    //The customer's first name
-   std::string firstname;
+   std::string firstName;
 
    //The customer's transaction history. historyMovies stores the movies
    //checked out or returned by the customer, and historyTypes stores
