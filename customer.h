@@ -33,6 +33,12 @@ public:
    //Creates a Customer with an input ID, firstname, and lastname
    Customer(int ID, std::string firstName, std::string lastName);
 
+   int getID() const;
+
+   string getFirstName() const;
+
+   string getLastName() const;
+
 private:
    //The customer's unique ID
    int ID;

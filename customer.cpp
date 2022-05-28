@@ -48,4 +48,19 @@ void Customer::addHistory(Movie movie, std::string type)
    numTransactions++;
 }
 
+int Customer::getID() const
+{
+   return ID;
+}
+
+string Customer::getFirstName() const
+{
+   return firstName;
+}
+
+string Customer::getLastName() const
+{
+   return lastName;
+}
+
 
