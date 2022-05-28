@@ -23,6 +23,8 @@ public:
    void addHistory(Movie movie, std::string type);
 
    //Output the Customer's history to cout in chronological order
+   //Format:
+   //typeOfHistory: movie.toString()
    void outputHistory() const;
 
    //Default constructor. Sets ID to 0000, firstName "Default", lastName "Default"
@@ -53,6 +55,9 @@ private:
    //checked out or returned by the customer, and historyTypes stores
    //whether the movie was checked out or returned.
    Movie historyMovies[MAXHISTORY];
+   //The customer's transaction history. historyMovies stores the movies
+   //checked out or returned by the customer, and historyTypes stores
+   //whether the movie was checked out or returned.
    std::string historyTypes[MAXHISTORY];
 
    //The number of transactions (returns or check-outs) made by

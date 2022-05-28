@@ -3,7 +3,7 @@
  * Created by Zachary Clow
  *
  * Defines a Comedy class that inherits from Movie.
- *
+ * Movie code is 'F'
  */
 
 #ifndef ASSIGNMENT4_COMEDY_H

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-
+//Default constructor. Sets ID to 0000, firstName "Default", lastName "Default"
 Customer::Customer()
 {
    ID = 0000;
@@ -28,12 +28,16 @@ Customer::Customer(int ID, std::string firstName, std::string lastName)
    this->lastName = lastName;
 }
 
+//Output the Customer's history to cout in chronological order.
+//Format:
+//typeOfHistory: movie.toString()
 void Customer::outputHistory() const
 {
    for(int i = 0; i < numTransactions; i++) {
       cout << historyTypes[i];
       cout << ": ";
       cout << historyMovies[i].toString();
+      cout << "\n";
    }
 }
 
