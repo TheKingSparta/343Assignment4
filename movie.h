@@ -1,46 +1,49 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+//#include "hashtable.h"
 #include<iostream>
-#include<string>
+using namespace std;
 
 class Movie
 {
     public:
         // constructor
         Movie();
-        Movie(char movieCode, int stock, std::string director, std::string title, int releaseYear);
+        Movie(char movieCode, int stock, string director, string title, int releaseYear);
 
         // destructor
         ~Movie();
 
         // accessors
         char getMovieCode() const;
-        std::string getTitle() const;
-        std::string getDirector() const;
-        int getReleaseDate() const;
         int getStock() const;
-    
-       //overloaded operators
-       bool operator== (const Movie &compare);
-       bool operator> (const Movie &compare);
-       bool operator< (const Movie &compare);
+        string getDirector() const;
+        string getTitle() const;        
+        int getReleaseYear() const;
+        
+        // accessors that classic.h will inherit
+        int getMonth() const;
+        string getActor() const;
 
         // display output function
-        void display() const;
+        void display();
 
         // mutators
         bool addStock(int);
-        bool subtractStock(int);
+        bool removeStock(int);
 
-        std::string toString() const;
+        // operator overloads
+        bool operator==(const Movie &compare);
+        bool operator>(const Movie &compare);
+        bool operator<(const Movie &compare);
 
     protected:
         int stock;
         int releaseYear;
         char movieCode;
-        std::string title;
-        std::string director;
+        string title;
+        string director;
 };
 
 #endif //MOVIE_H
