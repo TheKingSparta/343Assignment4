@@ -57,6 +57,9 @@ void HashTable::deleteItem(string key){
     
 // show all contents in hashtable
 void HashTable::printHash(){
+  
+  for(int i = 0; i < MAXHASHSIZE; i++)
+    cout << array[i] << endl;
 
 }
 
