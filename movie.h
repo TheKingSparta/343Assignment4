@@ -26,9 +26,6 @@ class Movie
         int getMonth() const;
         string getActor() const;
 
-        // display output function
-        void display();
-
         // mutators
         bool addStock(int);
         bool removeStock(int);
