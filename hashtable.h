@@ -15,9 +15,10 @@ class HashTable {
   // structure of linked list
   struct node{
     void* data;
+    string key;
     node* next;
     
-    node(void* customer, node* n): data(customer), next(n) {};
+    node(void* customer, node* n, string key): data(customer), next(n), key(key) {};
   };
   public:
 
