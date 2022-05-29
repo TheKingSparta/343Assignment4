@@ -68,12 +68,6 @@ string Movie::getActor() const
     return "";
 }
 
-// 
-void Movie::display()
-{
-    cout << setw(7) << movieCode;
-}
-
 // mutator function to add stock
 bool Movie::addStock(int stockToAdd)
 {
