@@ -13,7 +13,7 @@ class Classic : public Movie
         // destructor
         ~Classic();
 
-        int getReleaseMonth() const;
+        int getMonth() const;
         std::string getActor() const;
 
     private:
