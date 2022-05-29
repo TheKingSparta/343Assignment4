@@ -58,14 +58,14 @@ int Movie::getReleaseYear() const
 // only classic.cpp will use this
 int Movie::getMonth() const
 {
-
+    return -1;
 }
 
 // getter function for actor
 // only classic.cpp will use this
 string Movie::getActor() const
 {
-
+    return "";
 }
 
 // 
