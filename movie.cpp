@@ -77,8 +77,11 @@ void Movie::display()
 // mutator function to add stock
 bool Movie::addStock(int stockToAdd)
 {
-    stock += stockToAdd;
-    return true;
+    if (stockToAdd >= 0)
+    {
+        stock += stockToAdd;
+        return true;
+    }   
 }
 
 // mutator function to remove stock 
