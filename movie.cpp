@@ -5,7 +5,11 @@
 // default constructor
 Movie::Movie()
 {
-
+   movieCode = '';
+   stock = 0;
+   director = "";
+   title = "";
+   releaseYear = 0;
 }
 
 // input constructor
