@@ -32,3 +32,8 @@ Comedy::Comedy(int stock, std::string title, std::string director,
    movieCode = 'F';
 }
 
+string Comedy::toString() const{
+    return movieCode + " " + to_string(stock) + " " + director + " " + title + " " + to_string(releaseYear);
+}
+
+
