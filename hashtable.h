@@ -1,6 +1,6 @@
 /** hashtable.h
  * Defines a hashtable of what customers' bought that store has on record. Implemented using array of linked lists 
-* Written by Aditya Duggirala
+ * Written by Aditya Duggirala
  *
  */
 
@@ -10,15 +10,15 @@
 #include "customer.h"
 #include "movie.h"
 using namespace std;
-
+template <class T>
 class HashTable {
   // structure of linked list
   struct node{
-    void* data;
-    string key;
+    T* data;
     node* next;
+    string key;
     
-    node(void* customer, node* n, string key): data(customer), next(n), key(key) {};
+    node(T* customer, node* n): data(customer), next(n), key(key) {};
   };
   public:
 
@@ -27,9 +27,9 @@ HashTable();
 // destructor
 ~HashTable();
 // finding item in hashtable
-bool retrieve(string key);
+T* retrieve(string key);
   
-void insertItem(string key, void* data);
+void insertItem(string key, T* data);
 
 void deleteItem(string key);
     
@@ -45,5 +45,6 @@ static int const MAXHASHSIZE = 100; // max size of hashtable
  node* array[MAXHASHSIZE]; // array of linked lists
 };
 
-#endif //ASSIGNMENT4_HASHTABLE_CPP
+#endif //ASSIGNMENT4_HASHTABLE_H
+
 
