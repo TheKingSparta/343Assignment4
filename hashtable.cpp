@@ -44,14 +44,56 @@ HashTable::~HashTable(){
 
 }
 // finding item in hashtable
-bool HashTable::retrieve(string key){
-
+// finding item in hashtable
+void* HashTable::retrieve(string key){
+  int num = 0;
+  for(int i = 0; i < key.length();i++){
+      num += key[i];
+  }
+  int index = hash(num);
+  node* curr;
+  curr = array[index];
+  if(curr->key == key)
+   return curr->data;
+while(curr->next != nullptr){
+    if(curr->next->key == key)
+   return curr->next->data;
+   curr = curr->next; 
+     }
+   return nullptr;
+  
 }
   
 void HashTable::insertItem(string key, void* data){
-
+   int num = 0;
+  for(int i = 0; i < key.length();i++){
+      num += key[i];
+  }
+  int index = hash(num);
+ if(array[index] != nullptr){
+  node* curr;
+  curr = array[index];
+  if(curr->data == nullptr)
+    curr->data = data;
+    curr->key = key;
+while(curr->next != nullptr){
+    if(curr->next->data == nullptr){
+   curr->next->data = data;
+   curr->next->key = key;
+   return;
+    }
+   curr = curr->next; 
+     }
+     curr->next = new node(data,nullptr,key);
+ }
+ else{
+   array[index] = new node(data,nullptr,key);
+ }
 }
 void HashTable::deleteItem(string key){
+  if(retrieve(key) != nullptr)
+  delete retrieve(key);
+ 
 
 }
     
