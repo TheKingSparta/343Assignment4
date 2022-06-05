@@ -1,4 +1,5 @@
 #include "classic.h"
+#include "movie.h"
 
 Classic::Classic(char movieCode, int stock, string director, string title, string actor, int monthReleased, int releaseYear)
 {
@@ -19,6 +20,11 @@ int Classic::getMonth() const
 string Classic::getActor() const
 {
     return actor;
+}
+
+string Classic::toString() const
+{ 
+    return movieCode + " " + to_string(stock) + " " + director + " " + title + " " + actor + " " + to_string(monthReleased) + " " +  to_string(releaseYear);
 }
 
 bool Classic::operator==(const Movie &compare) const
@@ -47,10 +53,9 @@ bool Classic::operator>(const Movie &compare) const
             return true;
         }
     }
-    else
-    {
+    
         return false;
-    }
+    
 }
 
 bool Classic::operator<(const Movie &compare) const
@@ -66,8 +71,7 @@ bool Classic::operator<(const Movie &compare) const
             return true;
         }
     }
-    else
-    {
+    
         return false;
-    }
+    
 }
