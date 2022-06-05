@@ -3,26 +3,16 @@
 
 using namespace std;
 
-int main(){
+int main()
+{
+  ifstream customerFile("data4customer.txt");
+  ifstream moviesFile("data4movies.txt");
+  ifstream transactionsFile("data4commands.txt");
 
-   //Open files
-   ifstream customerFile("data4customers.txt");
-   if(!customerFile) {
-      cout << "Error, data4customers.txt not found";
-      return 1;
-   }
-
-   ifstream movieFile("data4movies.txt");
-   if(!customerFile) {
-      cout << "Error, data4movies.txt not found";
-      return 1;
-   }
-
-   ifstream commandFile("data4commands.txt");
-   if(!customerFile) {
-      cout << "Error, data4commands.txt not found";
-      return 1;
-   }
-
-   
+  if (!customerFile)                
+      cout << "Customer file cannot be oppened" << endl;
+  if (!moviesFile)                   
+      cout << "Movie file cannot be oppened" << endl;
+  if (!transactionsFile)             
+      cout << "Transaction file cannot be oppened" << endl;
 }
