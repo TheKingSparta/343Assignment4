@@ -3,6 +3,7 @@
 
 //#include "hashtable.h"
 #include<iostream>
+#include <string>
 using namespace std;
 
 class Movie
@@ -14,6 +15,8 @@ class Movie
 
         // destructor
         ~Movie();
+
+        string toString() const;
 
         // accessors
         char getMovieCode() const;
