@@ -73,19 +73,22 @@ void HashTable::insertItem(string key, void* data){
  if(array[index] != nullptr){
   node* curr;
   curr = array[index];
-  if(curr->data == nullptr && curr->key == key)
+  if(curr->data == nullptr)
     curr->data = data;
     curr->key = key;
 while(curr->next != nullptr){
-    if(curr->next->data == nullptr && curr->next->key == key){
+    if(curr->next->data == nullptr){
    curr->next->data = data;
    curr->next->key = key;
+   return;
     }
    curr = curr->next; 
      }
+     curr->next = new node(data,nullptr,key);
  }
-  
-
+ else{
+   array[index] = new node(data,nullptr,key);
+ }
 }
 void HashTable::deleteItem(string key){
   if(retrieve(key) != nullptr)
