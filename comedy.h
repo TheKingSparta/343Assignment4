@@ -3,7 +3,7 @@
  * Created by Zachary Clow
  *
  * Defines a Comedy class that inherits from Movie.
- * Movie code is 'F'
+ *
  */
 
 #ifndef ASSIGNMENT4_COMEDY_H
@@ -22,6 +22,9 @@ public:
 
    //Constructor to set default values
    Comedy(int stock, std::string title, std::string director, int releaseYear);
+
+   string toString() const;
 };
 
 #endif //ASSIGNMENT4_COMEDY_H
+
