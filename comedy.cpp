@@ -6,7 +6,6 @@
  * Movie code is 'F'
  */
 
-#include comedy.h
 #include "comedy.h"
 
 
