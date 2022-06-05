@@ -42,6 +42,12 @@ using namespace std;
    Drama::~Drama(){
 
    }
+
+   string Drama::toString() const{
+
+    return movieCode + " " + to_string(stock) + " " + director + " " + title + " " + to_string(releaseYear);
+    
+}
    
 
 #endif //ASSIGNMENT4_DRAMA_H
