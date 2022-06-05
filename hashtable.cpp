@@ -1,4 +1,5 @@
-/** hashtable.h
+/** hashtable.cpp
+
  * Defines a hashtable of what customers' bought that store has on record. Implemented using array of linked lists 
  * Written by Aditya Duggirala
  *
