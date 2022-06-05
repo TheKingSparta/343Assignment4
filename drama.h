@@ -9,21 +9,25 @@
 #define ASSIGNMENT4_DRAMA_H
 
 #include <fstream>
-#include "Movie.h"
+#include "movie.h"
 #include <iomanip>
 
 using namespace std;
 
 class Drama:public Movie {
-public:
+
+   public:
+
    //Constructor set to default values
-   Drama(int stock, string title, string director, int releaseYear);
+   Drama(char movieCode,int stock, string title, string director, int releaseYear);
    
    //default constructor from Movie
    Drama();
    
    //destructor
    ~Drama();
+
+   string toString() const;
    
 };
 #endif //ASSIGNMENT4_DRAMA_H
