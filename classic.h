@@ -16,6 +16,7 @@ class Classic : public Movie
         // accessors
         int getMonth() const;
         std::string getActor() const;
+        string toString() const;
 
         // operator overloads
         bool operator==(const Movie &compare) const;
