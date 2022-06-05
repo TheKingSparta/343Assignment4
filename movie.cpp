@@ -1,4 +1,5 @@
 #include "movie.h" 
+#include "classic.h"
 #include <iomanip>
 
 
@@ -68,6 +69,11 @@ string Movie::getActor() const
     return "";
 }
 
+string Movie::toString() const
+{
+   return " ";
+}
+
 // mutator function to add stock
 bool Movie::addStock(int stockToAdd)
 {
@@ -75,7 +81,9 @@ bool Movie::addStock(int stockToAdd)
     {
         stock += stockToAdd;
         return true;
-    }   
+    }  
+
+    return false; 
 }
 
 // mutator function to remove stock 
