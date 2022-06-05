@@ -11,7 +11,7 @@ Classic::~Classic()
 
 }
 
-int Classic::getReleaseMonth() const
+int Classic::getMonth() const
 {
     return monthReleased;
 }
