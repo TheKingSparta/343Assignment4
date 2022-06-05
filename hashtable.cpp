@@ -17,14 +17,14 @@ using namespace std;
   
 
 // constructor
-HashTable::HashTable(){
+template<class T>HashTable<T>::HashTable(){
 
 for(int i = 0; i < MAXHASHSIZE; i++)
 array[i] = nullptr;
 
 }
 // destructor
-HashTable::~HashTable(){
+template<class T>HashTable<T>::~HashTable(){
   node* curr;
 
   for(int i = 0; i < MAXHASHSIZE; i++){
@@ -44,8 +44,7 @@ HashTable::~HashTable(){
 
 }
 // finding item in hashtable
-// finding item in hashtable
-void* HashTable::retrieve(string key){
+template<class T> T* HashTable<T>::retrieve(string key){
   int num = 0;
   for(int i = 0; i < key.length();i++){
       num += key[i];
@@ -64,7 +63,7 @@ while(curr->next != nullptr){
   
 }
   
-void HashTable::insertItem(string key, void* data){
+template<class T> void HashTable<T>::insertItem(string key, T* data){
    int num = 0;
   for(int i = 0; i < key.length();i++){
       num += key[i];
@@ -73,9 +72,10 @@ void HashTable::insertItem(string key, void* data){
  if(array[index] != nullptr){
   node* curr;
   curr = array[index];
-  if(curr->data == nullptr)
+  if(curr->data == nullptr){
     curr->data = data;
     curr->key = key;
+  }
 while(curr->next != nullptr){
     if(curr->next->data == nullptr){
    curr->next->data = data;
@@ -89,8 +89,10 @@ while(curr->next != nullptr){
  else{
    array[index] = new node(data,nullptr,key);
  }
+  
+
 }
-void HashTable::deleteItem(string key){
+template<class T> void HashTable<T>::deleteItem(string key){
   if(retrieve(key) != nullptr)
   delete retrieve(key);
  
@@ -98,14 +100,12 @@ void HashTable::deleteItem(string key){
 }
     
 // show all contents in hashtable
-void HashTable::printHash(){
-  
+template <class T> void HashTable<T>::printHash(){
   for(int i = 0; i < MAXHASHSIZE; i++)
     cout << array[i] << endl;
-
 }
 
-int HashTable::hash(int ID){
+template <class T>int HashTable<T>::hash(int ID){
 
   return ID % MAXHASHSIZE;
 
@@ -113,4 +113,5 @@ int HashTable::hash(int ID){
 
 
 
-#endif //ASSIGNMENT4_HASHTABLE_CPP
+#endif //ASSIGNMENT4_HASHTABLE_H
+
