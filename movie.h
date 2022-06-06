@@ -23,7 +23,7 @@ class Movie
         int getStock() const;
         string getDirector() const;
         string getTitle() const;        
-        int getReleaseYear() const;
+        int getYear() const;
         
         // accessors that classic.h will inherit
         int getMonth() const;
@@ -37,6 +37,9 @@ class Movie
         bool operator==(const Movie &compare);
         bool operator>(const Movie &compare);
         bool operator<(const Movie &compare);
+
+   //Extraction operator overload
+   friend std::ostream& operator<<(std::ostream&, const Movie&);
 
     protected:
         int stock;

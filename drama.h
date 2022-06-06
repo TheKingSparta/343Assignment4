@@ -19,7 +19,7 @@ class Drama:public Movie {
    public:
 
    //Constructor set to default values
-   Drama(char movieCode,int stock, string title, string director, int releaseYear);
+   Drama(int stock, string title, string director, int releaseYear);
    
    //default constructor from Movie
    Drama();
@@ -28,6 +28,11 @@ class Drama:public Movie {
    ~Drama();
 
    string toString() const;
+
+   bool operator<(const Drama &compare) const;
+
+   //Extraction operator overload
+   friend std::ostream& operator<<(std::ostream&, const Drama&);
    
 };
 #endif //ASSIGNMENT4_DRAMA_H

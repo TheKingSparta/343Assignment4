@@ -24,6 +24,13 @@ public:
    Comedy(int stock, std::string title, std::string director, int releaseYear);
 
    string toString() const;
+
+   bool operator<(const Comedy &compare) const;
+
+   int getYear() const;
+
+   //Extraction operator overload
+   friend std::ostream& operator<<(std::ostream&, const Comedy&);
 };
 
 #endif //ASSIGNMENT4_COMEDY_H

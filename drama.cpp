@@ -18,14 +18,12 @@ using namespace std;
  
 
    //Constructor set to default values
-   Drama::Drama(char moviecode,int stock, string title, string director, int releaseYear){
+   Drama::Drama(int stock, string title, string director, int releaseYear){
       this->movieCode = 'D';
       this->stock = stock;
       this->title = title;
       this->director = director;
       this->releaseYear = releaseYear;
-
-
    }
    
    //default constructor from Movie
@@ -44,10 +42,26 @@ using namespace std;
    }
 
    string Drama::toString() const{
-
-    return movieCode + " " + to_string(stock) + " " + director + " " + title + " " + to_string(releaseYear);
+   return director + " " + title + " " + to_string(releaseYear) + " " + to_string(stock) + " " + movieCode;
     
 }
-   
+
+bool Drama::operator<(const Drama &compare) const
+{
+   if(director.compare(compare.getDirector()) < 0) {
+      return true;
+   } else if(director.compare(compare.getDirector()) == 0) {
+      if(title.compare(compare.getTitle()) < 0) {
+         return true;
+      }
+   }
+   return false;
+}
+
+std::ostream& operator<<(ostream& output, const Drama& movie)
+{
+   output << movie.toString();
+   return output;
+}
 
 #endif //ASSIGNMENT4_DRAMA_H

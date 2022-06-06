@@ -4,13 +4,16 @@
 
 #include "customer.h"
 #include <string>
+#include "comedy.h"
+#include "drama.h"
+#include "classic.h"
 
 using namespace std;
 
 //Default constructor. Sets ID to 0000, firstName "Default", lastName "Default"
 Customer::Customer()
 {
-   ID = 0000;
+   ID = "0000";
    firstName = "Default";
    lastName = "Default";
    numTransactions = 0;
@@ -21,7 +24,7 @@ Customer::~Customer()
 
 }
 
-Customer::Customer(int ID, std::string firstName, std::string lastName)
+Customer::Customer(string ID, std::string firstName, std::string lastName)
 {
    this->ID = ID;
    this->firstName = firstName;
@@ -52,7 +55,7 @@ void Customer::addHistory(Movie movie, std::string type)
    numTransactions++;
 }
 
-int Customer::getID() const
+string Customer::getID() const
 {
    return ID;
 }
@@ -65,6 +68,14 @@ string Customer::getFirstName() const
 string Customer::getLastName() const
 {
    return lastName;
+}
+
+std::ostream& operator<<(ostream& output, const Customer& customer)
+{
+   output << customer.ID << " ";
+   output << customer.lastName << " ";
+   output << customer.firstName;
+   return output;
 }
 
 

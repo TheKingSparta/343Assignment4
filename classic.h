@@ -8,7 +8,7 @@ class Classic : public Movie
 {
     public:
         // constructor
-        Classic(char movieCode, int stock, std::string director, std::string title, std::string actor, int monthReleased, int releaseYear);
+        Classic(int stock, std::string title, std::string director, std::string actor, int releaseYear, int monthReleased);
 
         // destructor
         ~Classic();
@@ -21,7 +21,10 @@ class Classic : public Movie
         // operator overloads
         bool operator==(const Movie &compare) const;
         bool operator>(const Movie &compare) const;
-        bool operator<(const Movie &compare) const;
+        bool operator<(const Classic &compare) const;
+
+      //Extraction operator overload
+      friend std::ostream& operator<<(std::ostream&, const Classic&);
 
     private:
         int monthReleased;

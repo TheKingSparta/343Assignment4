@@ -33,17 +33,20 @@ public:
    ~Customer();
 
    //Creates a Customer with an input ID, firstname, and lastname
-   Customer(int ID, std::string firstName, std::string lastName);
+   Customer(string ID, std::string firstName, std::string lastName);
 
-   int getID() const;
+   string getID() const;
 
    string getFirstName() const;
 
    string getLastName() const;
 
+   //Extraction operator overload
+   friend std::ostream& operator<<(std::ostream&, const Customer&);
+
 private:
    //The customer's unique ID
-   int ID;
+   string ID;
 
    //The customer's last name
    std::string lastName;

@@ -1,10 +1,15 @@
 #include "classic.h"
 #include "movie.h"
 
-Classic::Classic(char movieCode, int stock, string director, string title, string actor, int monthReleased, int releaseYear)
+Classic::Classic(int stock, string title, string director, string actor,
+                 int releaseYear, int monthReleased)
 {
-    this->actor = actor;
-    this->monthReleased = monthReleased;
+   this->movieCode = 'C';
+   this->title = title;
+   this->director = director;
+   this->actor = actor;
+   this->releaseYear = releaseYear;
+   this->monthReleased = monthReleased;
 }
 
 Classic::~Classic()
@@ -14,64 +19,72 @@ Classic::~Classic()
 
 int Classic::getMonth() const
 {
-    return monthReleased;
+   return monthReleased;
 }
 
 string Classic::getActor() const
 {
-    return actor;
+   return actor;
 }
 
 string Classic::toString() const
-{ 
-    return movieCode + " " + to_string(stock) + " " + director + " " + title + " " + actor + " " + to_string(monthReleased) + " " +  to_string(releaseYear);
+{
+   return movieCode + " " + to_string(stock) + " " + director + " " + title +
+          " " + actor + " " + to_string(monthReleased) + " " +
+          to_string(releaseYear);
 }
 
-bool Classic::operator==(const Movie &compare) const
+bool Classic::operator==(const Movie& compare) const
 {
-    if (monthReleased == compare.getMonth() &&
-        releaseYear == compare.getReleaseYear() && getActor() == compare.getActor())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+   if(monthReleased == compare.getMonth() &&
+      releaseYear == compare.getYear() &&
+      getActor() == compare.getActor())
+   {
+      return true;
+   } else
+   {
+      return false;
+   }
 }
 
-bool Classic::operator>(const Movie &compare) const
+bool Classic::operator>(const Movie& compare) const
 {
-    if (releaseYear > compare.getReleaseYear())
-    {
-        return true;
-    }
-    else if (releaseYear == compare.getReleaseYear())
-    {
-        if (monthReleased > compare.getMonth())
-        {
-            return true;
-        }
-    }
-    
-        return false;
-    
+   if(releaseYear > compare.getYear())
+   {
+      return true;
+   } else if(releaseYear == compare.getYear())
+   {
+      if(monthReleased > compare.getMonth())
+      {
+         return true;
+      }
+   }
+
+   return false;
+
 }
 
-bool Classic::operator<(const Movie &compare) const
+bool Classic::operator<(const Classic& compare) const
 {
-    if (releaseYear < compare.getReleaseYear())
-    {
-        return true;
-    }
-    else if (releaseYear == compare.getReleaseYear())
-    {
-        if (monthReleased < compare.getMonth())
-        {
-            return true;
-        }
-    }
-    
-        return false;
-    
+   if(releaseYear < compare.getYear())
+   {
+      return true;
+   } else if(releaseYear == compare.getYear())
+   {    //If release year is the same:
+      if(monthReleased < compare.getMonth())
+      {
+         return true;
+      } else if(monthReleased == compare.getMonth())
+      {
+         return (actor.compare(compare.getActor()) < 0);
+      }
+   }
+   return false;
+
+}
+
+std::ostream& operator<<(ostream& output, const Classic& movie)
+{
+   output << movie.toString();
+   return output;
 }

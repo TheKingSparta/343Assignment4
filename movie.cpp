@@ -50,7 +50,7 @@ string Movie::getTitle() const
 }
 
 // getter function for release year
-int Movie::getReleaseYear() const
+int Movie::getYear() const
 {
     return releaseYear;
 }
@@ -104,7 +104,7 @@ bool Movie::removeStock(int stockToRemove)
 // checks if two movies are the same
 bool Movie::operator==(const Movie &compare)
 {
-    if (this->title == compare.title && this->releaseYear == compare.getReleaseYear())
+    if (this->title == compare.title && this->releaseYear == compare.getYear())
     {
         return true;
     }
@@ -118,12 +118,19 @@ bool Movie::operator==(const Movie &compare)
 // checks if the first movie's release year is greater than the second movie's release year
 bool Movie::operator>(const Movie &compare)
 {
-    return this->releaseYear > compare.getReleaseYear();
+    return this->releaseYear > compare.getYear();
 }
 
 // operator < overload
 // checks if the first movie's release year is less than the second movie's release year
 bool Movie::operator<(const Movie &compare)
 {
-    return this->releaseYear < compare.getReleaseYear();
+    return this->releaseYear < compare.getYear();
 }
+
+std::ostream& operator<<(ostream& output, const Movie& movie)
+{
+   output << movie.toString();
+   return output;
+}
+
