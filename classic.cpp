@@ -5,6 +5,7 @@ Classic::Classic(int stock, string title, string director, string actor,
                  int releaseYear, int monthReleased)
 {
    this->movieCode = 'C';
+   this->stock = stock;
    this->title = title;
    this->director = director;
    this->actor = actor;

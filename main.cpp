@@ -1,3 +1,4 @@
+#include <string>
 #include <iostream>
 #include <fstream>
 #include "customer.h"
@@ -6,17 +7,18 @@
 #include "drama.h"
 #include "classic.h"
 #include "movie.h"
-#include <sstream>
+
 #include <vector>
-#include <string>
+
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
 void fillCustomerData(ifstream &customerFile, HashTable<Customer> &customers) {
    char nextLine[100];  //Size doesn't matter much, just needs to be big enough
 
-   stringstream stream;
+   std::stringstream stream;
 
    string ID;
    string firstName;
@@ -37,7 +39,7 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
 
    string token;
 
-   stringstream stream;
+   std::stringstream stream;
 
    char code;
    string stock;
@@ -54,28 +56,54 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
    string month;
 
    while(!movieFile.eof()) {
-      char nextLine[999];  //Size doesn't matter much, just needs to be big enough
+      char nextLine[200];  //Size doesn't matter much, just needs to be big enough
 
-      //Get the next line, up to 100 chars, put in nextLine
-      movieFile.getline(nextLine, 999);
+      //Get the next line, up to 999 chars, put in nextLine
+      movieFile.getline(nextLine, 200);
       if(movieFile.eof()) {
          break;
       }
-      stream << nextLine;
+      stream.str(nextLine);
+
+      if(stream.fail()) {
+         cout << "Stream machine broke";
+         cout << stream.failbit;
+         return;
+      }
 
       //string next(nextLine);
       //next.erase(remove(next.begin(), next.end(), ','), next.end());
-      getline(stream, token, ',');
+      std::getline(stream, token, ',');
       code = token[0];
 
-      getline(stream, token, ',');
+      if(stream.fail()) {
+         cout << "Stream machine broke";
+         return;
+      }
+
+      std::getline(stream, token, ',');
       stock = token;
 
-      getline(stream, token, ',');
+      if(stream.fail()) {
+         cout << "Stream machine broke";
+         return;
+      }
+
+      std::getline(stream, token, ',');
       director = token;
       //stream >> directorLastName;
-      getline(stream, token, ',');
+      if(stream.fail()) {
+         cout << "Stream machine broke";
+         return;
+      }
+
+      std::getline(stream, token, ',');
       title = token;
+
+      if(stream.fail()) {
+         cout << "Stream machine broke";
+         return;
+      }
 
       if(code == 'C') {
          stream >> majorActorFirstName;
@@ -96,7 +124,8 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
       } else {
          cout << "Invalid movie code \n";
       }
-      stream.str("");
+      stream.clear();
+
    }
    //Sort
    sort(classics.begin(), classics.end());
@@ -144,7 +173,7 @@ int main()
    vector<Drama*> dramas;
    vector<Classic*> classics;
 
-   fillCustomerData(customerFile, customers);
+   //fillCustomerData(customerFile, customers);
    fillMovieData(moviesFile, comedies, dramas, classics);
    //customers.printHash();
 }

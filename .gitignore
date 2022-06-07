@@ -1,1 +1,4 @@
 .vscode/settings.json
+cmake-build-debug
+CMakeLists.txt
+.gitignore
