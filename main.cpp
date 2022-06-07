@@ -32,6 +32,7 @@ void fillCustomerData(ifstream &customerFile, HashTable<Customer> &customers) {
       stream >> lastName;
       stream >> firstName;
       customers.insertItem(ID, new Customer(ID, firstName, lastName));
+      stream.clear();
    }
 }
 
@@ -78,49 +79,23 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
       }
       stream.str(nextLine);
 
-      if(stream.fail()) {
-         cout << "Stream machine broke";
-         cout << stream.failbit;
-         return;
-      }
-
       //string next(nextLine);
       //next.erase(remove(next.begin(), next.end(), ','), next.end());
       std::getline(stream, token, ',');
       token = removeSpaces(token);
       code = token[0];
 
-      if(stream.fail()) {
-         cout << "Stream machine broke";
-         return;
-      }
-
       std::getline(stream, token, ',');
       token = removeSpaces(token);
       stock = token;
 
-      if(stream.fail()) {
-         cout << "Stream machine broke";
-         return;
-      }
-
       std::getline(stream, token, ',');
       token = removeSpaces(token);
       director = token;
-      //stream >> directorLastName;
-      if(stream.fail()) {
-         cout << "Stream machine broke";
-         return;
-      }
 
       std::getline(stream, token, ',');
       token = removeSpaces(token);
       title = token;
-
-      if(stream.fail()) {
-         cout << "Stream machine broke";
-         return;
-      }
 
       if(code == 'C') {
          stream >> majorActorFirstName;
@@ -148,8 +123,10 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
    sort(classics.begin(), classics.end(), [](Classic* ptr_l , Classic* ptr_r) { return *ptr_l < *ptr_r;});
    sort(dramas.begin(), dramas.end(), [](Drama* ptr_l , Drama* ptr_r) { return *ptr_l < *ptr_r;});
    sort(comedies.begin(), comedies.end(), [](Comedy* ptr_l , Comedy* ptr_r) { return *ptr_l < *ptr_r;});
+}
 
-   //Output
+
+void outputInventory(vector<Comedy*> &comedies, vector<Drama*> &dramas, vector<Classic*> &classics) {
    for(Comedy* c : comedies) {
       cout << *c;
    }
@@ -161,16 +138,84 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
    }
 }
 
+//R [ID] D [movie info]: Return
+//B [ID] D [movie info]: Borrow
+//I: Output inventory
+//H [ID]: Output Customer history
+void executeCommands(ifstream &commandFile, HashTable<Customer> &customers, vector<Comedy*> &comedies, vector<Drama*> &dramas, vector<Classic*> &classics) {
+   string token;
 
-void executeCommands() {
+   std::stringstream stream;
 
+   char code;
+   string stock;
+   string director;
+   //string directorLastName;
+   string title;
+
+   //Everything but Classic year is next
+   string year;
+
+   //Only for classic
+   string majorActorFirstName;
+   string majorActorLastName;
+   string month;
+
+   char commandCode;
+
+   string ID;
+
+   while(!commandFile.eof())
+   {
+      char nextLine[200];  //Size doesn't matter much, just needs to be big enough
+
+      //Get the next line, up to 999 chars, put in nextLine
+      commandFile.getline(nextLine, 200);
+      if(commandFile.eof())
+      {
+         break;
+      }
+      stream.str(nextLine);
+
+      stream >> commandCode;
+
+      if(commandCode == 'I') {
+         outputInventory(comedies, dramas, classics);
+      } else if(commandCode == 'H') {
+         stream >> ID;
+         customers.retrieve(ID)->outputHistory();
+      } else if(commandCode == 'B') {
+         //Borrow
+      } else if(commandCode == 'R') {
+         //Return
+      } else {
+         cout << "Bad error code";
+         cout << "\n";
+      }
+
+      /*
+      //string next(nextLine);
+      //next.erase(remove(next.begin(), next.end(), ','), next.end());
+      std::getline(stream, token, ',');
+      token = removeSpaces(token);
+      code = token[0];
+
+      std::getline(stream, token, ',');
+      token = removeSpaces(token);
+      stock = token;
+
+      std::getline(stream, token, ',');
+      token = removeSpaces(token);
+      director = token;
+
+      std::getline(stream, token, ',');
+      token = removeSpaces(token);
+      title = token;
+`     */
+      stream.clear();
+   }
 }
 
-void outputInventory() {
-   //For each in comedy, output each comedy
-   //For each in Drama, output each drama
-   //For each in classics, output each classics
-}
 
 int main()
 {
@@ -191,9 +236,10 @@ int main()
    vector<Drama*> dramas;
    vector<Classic*> classics;
 
-   //fillCustomerData(customerFile, customers);
+   fillCustomerData(customerFile, customers);
    fillMovieData(moviesFile, comedies, dramas, classics);
    //customers.printHash();
+   executeCommands(transactionsFile, customers, comedies, dramas, classics);
 }
 
 
