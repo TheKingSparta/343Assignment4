@@ -33,7 +33,9 @@ Comedy::~Comedy() {
 
 
 string Comedy::toString() const{
-    return movieCode + " " + to_string(stock) + " " + director + " " + title + " " + to_string(releaseYear);
+   string str;
+   str.push_back(movieCode);
+   return title + " " + to_string(releaseYear) + " " + to_string(stock) + " " + director + " " + str;
 }
 
 bool Comedy::operator<(const Comedy &compare) const
@@ -56,5 +58,6 @@ int Comedy::getYear() const
 std::ostream& operator<<(ostream& output, const Comedy& movie)
 {
    output << movie.toString();
+   output << "\n";
    return output;
 }

@@ -30,9 +30,11 @@ string Classic::getActor() const
 
 string Classic::toString() const
 {
-   return movieCode + " " + to_string(stock) + " " + director + " " + title +
-          " " + actor + " " + to_string(monthReleased) + " " +
-          to_string(releaseYear);
+   string str;
+   str.push_back(movieCode);
+   return to_string(monthReleased) + " " + to_string(releaseYear) + " " +
+          actor + " " + to_string(stock) + " " + director + " " + title +
+          " " + str;
 }
 
 bool Classic::operator==(const Movie& compare) const
@@ -77,7 +79,9 @@ bool Classic::operator<(const Classic& compare) const
          return true;
       } else if(monthReleased == compare.getMonth())
       {
+
          return (actor.compare(compare.getActor()) < 0);
+
       }
    }
    return false;
@@ -87,5 +91,6 @@ bool Classic::operator<(const Classic& compare) const
 std::ostream& operator<<(ostream& output, const Classic& movie)
 {
    output << movie.toString();
+   output << "\n";
    return output;
 }

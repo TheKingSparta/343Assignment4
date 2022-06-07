@@ -15,43 +15,51 @@
 
 using namespace std;
 
- 
 
-   //Constructor set to default values
-   Drama::Drama(int stock, string title, string director, int releaseYear){
-      this->movieCode = 'D';
-      this->stock = stock;
-      this->title = title;
-      this->director = director;
-      this->releaseYear = releaseYear;
-   }
-   
-   //default constructor from Movie
-   Drama::Drama(){
-    movieCode = 'D';
+//Constructor set to default values
+Drama::Drama(int stock, string title, string director, int releaseYear)
+{
+   this->movieCode = 'D';
+   this->stock = stock;
+   this->title = title;
+   this->director = director;
+   this->releaseYear = releaseYear;
+}
+
+//default constructor from Movie
+Drama::Drama()
+{
+   movieCode = 'D';
    stock = 0;
    releaseYear = 0;
    title = "";
    director = "";
 
-   }
-   
-   //destructor
-   Drama::~Drama(){
-
-   }
-
-   string Drama::toString() const{
-   return director + " " + title + " " + to_string(releaseYear) + " " + to_string(stock) + " " + movieCode;
-    
 }
 
-bool Drama::operator<(const Drama &compare) const
+//destructor
+Drama::~Drama()
 {
-   if(director.compare(compare.getDirector()) < 0) {
+
+}
+
+string Drama::toString() const
+{
+   string str;
+   str.push_back(movieCode);
+   return director + " " + title + " " + to_string(releaseYear) + " " +
+          to_string(stock) + " " + str;
+}
+
+bool Drama::operator<(const Drama& compare) const
+{
+   if(director.compare(compare.getDirector()) < 0)
+   {
       return true;
-   } else if(director.compare(compare.getDirector()) == 0) {
-      if(title.compare(compare.getTitle()) < 0) {
+   } else if(director.compare(compare.getDirector()) == 0)
+   {
+      if(title.compare(compare.getTitle()) < 0)
+      {
          return true;
       }
    }
@@ -61,6 +69,7 @@ bool Drama::operator<(const Drama &compare) const
 std::ostream& operator<<(ostream& output, const Drama& movie)
 {
    output << movie.toString();
+   output << "\n";
    return output;
 }
 

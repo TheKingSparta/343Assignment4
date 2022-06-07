@@ -35,6 +35,19 @@ void fillCustomerData(ifstream &customerFile, HashTable<Customer> &customers) {
    }
 }
 
+
+string removeSpaces(string input) {
+   string output;
+   bool isStart = true;
+   for(int i = 0; i < input.length(); i++) {
+      if(!(isStart && input[i] == ' ')) {
+         isStart = false;
+         output += input[i];
+      }
+   }
+   return output;
+}
+
 void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*> &dramas, vector<Classic*> &classics) {
 
    string token;
@@ -74,6 +87,7 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
       //string next(nextLine);
       //next.erase(remove(next.begin(), next.end(), ','), next.end());
       std::getline(stream, token, ',');
+      token = removeSpaces(token);
       code = token[0];
 
       if(stream.fail()) {
@@ -82,6 +96,7 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
       }
 
       std::getline(stream, token, ',');
+      token = removeSpaces(token);
       stock = token;
 
       if(stream.fail()) {
@@ -90,6 +105,7 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
       }
 
       std::getline(stream, token, ',');
+      token = removeSpaces(token);
       director = token;
       //stream >> directorLastName;
       if(stream.fail()) {
@@ -98,6 +114,7 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
       }
 
       std::getline(stream, token, ',');
+      token = removeSpaces(token);
       title = token;
 
       if(stream.fail()) {
@@ -128,9 +145,9 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
 
    }
    //Sort
-   sort(classics.begin(), classics.end());
-   sort(dramas.begin(), dramas.end());
-   sort(comedies.begin(), comedies.end());
+   sort(classics.begin(), classics.end(), [](Classic* ptr_l , Classic* ptr_r) { return *ptr_l < *ptr_r;});
+   sort(dramas.begin(), dramas.end(), [](Drama* ptr_l , Drama* ptr_r) { return *ptr_l < *ptr_r;});
+   sort(comedies.begin(), comedies.end(), [](Comedy* ptr_l , Comedy* ptr_r) { return *ptr_l < *ptr_r;});
 
    //Output
    for(Comedy* c : comedies) {
@@ -143,6 +160,7 @@ void fillMovieData(ifstream &movieFile, vector<Comedy*> &comedies, vector<Drama*
       cout << *c;
    }
 }
+
 
 void executeCommands() {
 
