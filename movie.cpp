@@ -1,4 +1,7 @@
-#include "movie.h"
+#include "movie.h" 
+#include "classic.h"
+#include <iomanip>
+
 
 // default constructor
 Movie::Movie()

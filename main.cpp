@@ -5,6 +5,7 @@
 #include "comedy.h"
 #include "drama.h"
 #include "classic.h"
+#include <memory>
 #include <vector>
 #include <algorithm>
 
@@ -49,8 +50,8 @@ string removeSpaces(string input)
    return output;
 }
 
-void fillMovieData(ifstream& movieFile, vector<Comedy*>& comedies,
-                   vector<Drama*>& dramas, vector<Classic*>& classics)
+void fillMovieData(ifstream& movieFile, vector<shared_ptr<Comedy>>& comedies,
+                   vector<shared_ptr<Drama>>& dramas, vector<shared_ptr<Classic>>& classics)
 {
 
    string token;
@@ -107,68 +108,82 @@ void fillMovieData(ifstream& movieFile, vector<Comedy*>& comedies,
          stream >> majorActorLastName;
          stream >> month;
          stream >> year;
-         Classic* movie = new Classic(stoi(stock), title, director,
-                             majorActorFirstName + " " +
-                             majorActorLastName, stoi(year),
-                             stoi(month));
-         classics.push_back(movie);
-         delete movie;
+
+         
+
+         auto thing = shared_ptr<Classic> ( new Classic(stoi(stock), title, director,
+                                        majorActorFirstName + " " +
+                                        majorActorLastName, stoi(year),
+                                        stoi(month)));
+         classics.push_back(thing);
+         
+         
+         //classics.push_back(new Classic(stoi(stock), title, director,
+         //                               majorActorFirstName + " " +
+         //                               majorActorLastName, stoi(year),
+          //                              stoi(month)));
       } else if(code == 'F')
       {
          //getline(stream, token, ',');
          //year = token;
          stream >> year;
-         comedies
-            .push_back(new Comedy(stoi(stock), title, director, stoi(year)));
+         auto thing2 = shared_ptr<Comedy> (new Comedy(stoi(stock), title, director, stoi(year)));
+         comedies.push_back(thing2);
+         
+         //comedies
+            //.push_back(new Comedy(stoi(stock), title, director, stoi(year)));
       } else if(code == 'D')
       {
          //getline(stream, token, ',');
          //year = token;
          stream >> year;
-         dramas.push_back(new Drama(stoi(stock), title, director, stoi(year)));
+         auto thing3 = shared_ptr<Drama> (new Drama(stoi(stock), title, director, stoi(year)));
+         dramas.push_back(thing3);
+         
+         //dramas.push_back(new Drama(stoi(stock), title, director, stoi(year)));
       } else
       {
-         cout << "Invalid movie code in movie file\n\n";
+         std::cout << "Invalid movie code in movie file\n\n";
       }
       stream.clear();
 
    }
    //Sort
-   sort(classics.begin(), classics.end(), [](Classic* ptr_l, Classic* ptr_r)
+   std::sort(classics.begin(), classics.end(), [](shared_ptr<Classic> ptr_l, shared_ptr<Classic> ptr_r)
    { return *ptr_l < *ptr_r; });
-   sort(dramas.begin(), dramas.end(), [](Drama* ptr_l, Drama* ptr_r)
+   sort(dramas.begin(), dramas.end(), [](shared_ptr<Drama> ptr_l, shared_ptr<Drama> ptr_r)
    { return *ptr_l < *ptr_r; });
-   sort(comedies.begin(), comedies.end(), [](Comedy* ptr_l, Comedy* ptr_r)
+   sort(comedies.begin(), comedies.end(), [](shared_ptr<Comedy> ptr_l, shared_ptr<Comedy> ptr_r)
    { return *ptr_l < *ptr_r; });
 }
 
 
-void outputInventory(vector<Comedy*>& comedies, vector<Drama*>& dramas,
-                     vector<Classic*>& classics)
+void outputInventory(vector<shared_ptr<Comedy>>& comedies, vector<shared_ptr<Drama>>& dramas,
+                     vector<shared_ptr<Classic>>& classics)
 {
-   for(Comedy* c: comedies)
+   for(shared_ptr<Comedy> c: comedies)
    {
-      cout << c->getStock() << ": ";
-      cout << c->getTitle() << ", ";
-      cout << c->getYear() << " " << c->getMovieCode() << "\n";
+      std::cout << c->getStock() << ": ";
+      std::cout << c->getTitle() << ", ";
+      std::cout << c->getYear() << " " << c->getMovieCode() << "\n";
       //cout << *c;
    }
-   for(Drama* d: dramas)
+   for(shared_ptr<Drama> d: dramas)
    {
-      cout << d->getStock() << ": ";
-      cout << d->getDirector() << ", ";
-      cout << d->getTitle() << " " << d->getMovieCode() << "\n";
+      std::cout << d->getStock() << ": ";
+      std::cout << d->getDirector() << ", ";
+      std::cout << d->getTitle() << " " << d->getMovieCode() << "\n";
       //cout << *d;
    }
-   for(Classic* c: classics)
+   for(shared_ptr<Classic> c: classics)
    {
-      cout << c->getStock() << ": ";
-      cout << c->getMonth() << " ";
-      cout << c->getYear() << ", ";
-      cout << c->getActor() << " " << c->getMovieCode() << "\n";
+      std::cout << c->getStock() << ": ";
+      std::cout << c->getMonth() << " ";
+      std::cout << c->getYear() << ", ";
+      std::cout << c->getActor() << " " << c->getMovieCode() << "\n";
       //cout << *c;
    }
-   cout << "\n";
+   std::cout << "\n";
 }
 
 //R [ID] D [movie info]: Return
@@ -176,8 +191,8 @@ void outputInventory(vector<Comedy*>& comedies, vector<Drama*>& dramas,
 //I: Output inventory
 //H [ID]: Output Customer history
 void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
-                     vector<Comedy*>& comedies, vector<Drama*>& dramas,
-                     vector<Classic*>& classics)
+                     vector<shared_ptr<Comedy>>& comedies, vector<shared_ptr<Drama>>& dramas,
+                     vector<shared_ptr<Classic>>& classics)
 {
    string token;
 
@@ -232,7 +247,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
          stream >> media;
          if(media != 'D')
          {
-            cout << "Invalid media type\n\n";
+            std::cout << "Invalid media type\n\n";
             continue;
          }
          stream >> code;
@@ -244,9 +259,10 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             std::getline(stream, token, ',');
             token = removeSpaces(token);
             title = token;
-            Drama* movie = nullptr;
+            //shared_ptr<Drama> movie = nullptr;
+            shared_ptr<Drama> movie = nullptr;
             Customer* customer = nullptr;
-            for(Drama* d: dramas)
+            for(shared_ptr<Drama> d: dramas)
             {
                if(d->getDirector() == director && d->getTitle() == title)
                {
@@ -254,20 +270,20 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
                }
             }
             if(movie == nullptr) {
-               cout << "No movie with title ";
-               cout << title;
-               cout << "\n\n";
+               std::cout << "No movie with title ";
+               std::cout << title;
+               std::cout << "\n\n";
                continue;
             }
             if(!movie->removeStock(1)) {
-               cout << "Movie not in stock\n\n";
+               std::cout << "Movie not in stock\n\n";
                continue;
             }
             customer = customers.retrieve(ID);
             if(customer == nullptr) {
-               cout << "No customer with ID ";
-               cout << ID;
-               cout << "\n\n";
+               std::cout << "No customer with ID ";
+               std::cout << ID;
+               std::cout << "\n\n";
                continue;
             }
             customer->addHistory(movie, "borrow");
@@ -277,9 +293,9 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             stream >> year;
             stream >> majorActorFirstName;
             stream >> majorActorLastName;
-            Classic* movie = nullptr;
+            shared_ptr<Classic> movie = nullptr;
             Customer* customer = nullptr;
-            for(Classic* c: classics)
+            for(shared_ptr<Classic> c: classics)
             {
                if(c->getMonth() == stoi(month) && c->getYear() == stoi(year) &&
                   c->getActor() ==
@@ -312,9 +328,9 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             token = removeSpaces(token);
             title = token;
             stream >> year;
-            Comedy* movie = nullptr;
+            shared_ptr<Comedy> movie = nullptr;
             Customer* customer = nullptr;
-            for(Comedy* c : comedies) {
+            for(shared_ptr<Comedy> c : comedies) {
                if(c->getTitle() == title && c->getYear() == stoi(year)) {
                   movie = c;
                }
@@ -362,9 +378,9 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             std::getline(stream, token, ',');
             token = removeSpaces(token);
             title = token;
-            Drama* movie = nullptr;
+            shared_ptr<Drama> movie = nullptr;
             Customer* customer = nullptr;
-            for(Drama* d: dramas)
+            for(shared_ptr<Drama> d: dramas)
             {
                if(d->getDirector() == director && d->getTitle() == title)
                {
@@ -392,9 +408,9 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             stream >> year;
             stream >> majorActorFirstName;
             stream >> majorActorLastName;
-            Classic* movie = nullptr;
+            shared_ptr<Classic> movie = nullptr;
             Customer* customer = nullptr;
-            for(Classic* c: classics)
+            for(shared_ptr<Classic> c: classics)
             {
                if(c->getMonth() == stoi(month) && c->getYear() == stoi(year) &&
                   c->getActor() ==
@@ -424,9 +440,9 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             token = removeSpaces(token);
             title = token;
             stream >> year;
-            Comedy* movie = nullptr;
+            shared_ptr<Comedy> movie = nullptr;
             Customer* customer = nullptr;
-            for(Comedy* c : comedies) {
+            for(shared_ptr<Comedy> c : comedies) {
                if(c->getTitle() == title && c->getYear() == stoi(year)) {
                   movie = c;
                }
@@ -495,19 +511,16 @@ int main()
 
    HashTable<Customer> customers;
 
-   vector<Comedy*> comedies;
-   vector<Drama*> dramas;
-   vector<Classic*> classics;
+   vector<shared_ptr<Comedy>> comedies;
+   vector<shared_ptr<Drama>> dramas;
+   vector<shared_ptr<Classic>> classics;
 
    fillCustomerData(customerFile, customers);
    cout << "\n";
    fillMovieData(moviesFile, comedies, dramas, classics);
    //cout << "\n";
    //customers.printHash();
-   executeCommands(transactionsFile, customers, comedies, dramas, classics);
+   executeCommands(transactionsFile, customers, comedies, dramas, classics); 
 
    return 0;
 }
-
-
-

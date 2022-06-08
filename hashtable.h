@@ -79,6 +79,7 @@ HashTable<T>::~HashTable()
       array[i] = nullptr;
    }
 
+
 }
 
 // finding item in hashtable
