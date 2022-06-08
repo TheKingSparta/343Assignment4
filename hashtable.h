@@ -1,5 +1,6 @@
 /** hashtable.h
  * Defines a hashtable of what customers' bought that store has on record. Implemented using array of linked lists 
+ * a template class
  * Written by Aditya Duggirala
  *
  */
@@ -12,7 +13,7 @@
 using namespace std;
 template <class T>
 class HashTable {
-  // structure of linked list
+  // structure of linked list, used for open hashing
   struct node{
     T* data;
     node* next;
@@ -51,12 +52,13 @@ template<class T>
 HashTable<T>::HashTable()
 {
 
-   for(int i = 0; i < MAXHASHSIZE; i++)
+   for(int i = 0; i < MAXHASHSIZE; i++) // setting all values to nullptr in array
       array[i] = nullptr;
 
 }
 
 // destructor
+// delete all data in array and setting to nullptr
 template<class T>
 HashTable<T>::~HashTable()
 {
@@ -164,13 +166,14 @@ void HashTable<T>::printHash()
          cout << *array[i]->data << endl;
 }
 
+// calculation to find remainder
 template<class T>
 int HashTable<T>::hash(int ID)
 {
 
    return ID % MAXHASHSIZE;
 
-} // calculation to find remainder
+} 
 
 #endif //ASSIGNMENT4_HASHTABLE_H
 
