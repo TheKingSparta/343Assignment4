@@ -4,9 +4,6 @@
 
 #include "customer.h"
 #include <string>
-#include "comedy.h"
-#include "drama.h"
-#include "classic.h"
 
 using namespace std;
 
@@ -17,11 +14,17 @@ Customer::Customer()
    firstName = "Default";
    lastName = "Default";
    numTransactions = 0;
+   for(int i = 0; i < MAXHISTORY; i++) {
+      historyTypes[i] = "";
+      historyMovies[i] = nullptr;
+   }
 }
 
 Customer::~Customer()
 {
-
+   for(int i = 0; i < MAXHISTORY; i++) {
+      delete historyMovies[i];
+   }
 }
 
 Customer::Customer(string ID, std::string firstName, std::string lastName)
@@ -29,6 +32,11 @@ Customer::Customer(string ID, std::string firstName, std::string lastName)
    this->ID = ID;
    this->firstName = firstName;
    this->lastName = lastName;
+   numTransactions = 0;
+   for(int i = 0; i < MAXHISTORY; i++) {
+      historyTypes[i] = "";
+      historyMovies[i] = nullptr;
+   }
 }
 
 //Output the Customer's history to cout in chronological order.

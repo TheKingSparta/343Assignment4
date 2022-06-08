@@ -2,3 +2,6 @@
 cmake-build-debug
 CMakeLists.txt
 .gitignore
+data4commands.txt
+data4customers.txt
+data4movies.txt

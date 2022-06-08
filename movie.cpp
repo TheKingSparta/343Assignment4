@@ -1,7 +1,4 @@
-#include "movie.h" 
-#include "classic.h"
-#include <iomanip>
-
+#include "movie.h"
 
 // default constructor
 Movie::Movie()
@@ -21,9 +18,7 @@ Movie::Movie(char movieCode, int stock, string director, string title, int relea
 
 // destructor
 Movie::~Movie()
-{
-
-}
+= default;
 
 // getter function for movie code
 char Movie::getMovieCode() const

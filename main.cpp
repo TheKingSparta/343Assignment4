@@ -1,17 +1,12 @@
 #include <string>
 #include <iostream>
-#include <fstream>
 #include "customer.h"
 #include "hashtable.h"
 #include "comedy.h"
 #include "drama.h"
 #include "classic.h"
-#include "movie.h"
-
 #include <vector>
-
 #include <algorithm>
-#include <sstream>
 
 using namespace std;
 
