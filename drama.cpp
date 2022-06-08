@@ -41,7 +41,7 @@ Drama::Drama()
 Drama::~Drama()
    = default;
 
-
+// print out information in drama movie
 string Drama::toString() const
 {
    string str;
@@ -50,6 +50,8 @@ string Drama::toString() const
           to_string(stock) + " " + str;
 }
 
+// overloaded operator for sorting criteria of Drama movies
+// compares director and title
 bool Drama::operator<(const Drama& compare) const
 {
    if(director.compare(compare.getDirector()) < 0)
@@ -65,6 +67,7 @@ bool Drama::operator<(const Drama& compare) const
    return false;
 }
 
+// output of Drama Movie
 std::ostream& operator<<(ostream& output, const Drama& movie)
 {
    output << movie.toString();
@@ -72,4 +75,4 @@ std::ostream& operator<<(ostream& output, const Drama& movie)
    return output;
 }
 
-#endif //ASSIGNMENT4_DRAMA_H
+#endif //ASSIGNMENT4_DRAMA_CPP
