@@ -13,7 +13,8 @@
 #include <memory>
 #include "movie.h"
 
-class Customer:public Movie {
+class Customer : public Movie
+{
 public:
    //The max number of history items the customer can have.
    static int const MAXHISTORY = 99999;

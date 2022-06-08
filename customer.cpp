@@ -18,7 +18,8 @@ Customer::Customer()
    firstName = "Default";
    lastName = "Default";
    numTransactions = 0;
-   for(int i = 0; i < MAXHISTORY; i++) {
+   for(int i = 0; i < MAXHISTORY; i++)
+   {
       historyTypes[i] = "";
       historyMovies[i] = nullptr;
    }
@@ -37,7 +38,8 @@ Customer::Customer(string ID, std::string firstName, std::string lastName)
    this->firstName = firstName;
    this->lastName = lastName;
    numTransactions = 0;
-   for(int i = 0; i < MAXHISTORY; i++) {
+   for(int i = 0; i < MAXHISTORY; i++)
+   {
       historyTypes[i] = "";
       historyMovies[i] = nullptr;
    }
@@ -53,7 +55,8 @@ void Customer::outputHistory() const
    cout << firstName;
    cout << "\n";
    //Loop through the history from most recent to oldest.
-   for(int i = numTransactions - 1; i >= 0; i--) {
+   for(int i = numTransactions - 1; i >= 0; i--)
+   {
       cout << historyTypes[i];
       cout << ": ";
       cout << historyMovies[i]->toString();
@@ -68,7 +71,8 @@ void Customer::outputHistory() const
 //Customers cannot return movies they have not borrowed.
 void Customer::addHistory(shared_ptr<Movie> movie, std::string type)
 {
-   if(numTransactions >= MAXHISTORY) { //If the history arrays are full...
+   if(numTransactions >= MAXHISTORY)
+   { //If the history arrays are full...
       cout << "numTransactions cannot exceed MAXHISTORY";
       return;
    }
@@ -92,7 +96,8 @@ void Customer::addHistory(shared_ptr<Movie> movie, std::string type)
             }
          }
       }
-      if(numTimesReturned == numTimesBorrowed) {
+      if(numTimesReturned == numTimesBorrowed)
+      {
          cout << "Cannot return movie that has not been borrowed\n\n";
          return;
       }

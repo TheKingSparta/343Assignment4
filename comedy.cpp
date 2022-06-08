@@ -3,7 +3,8 @@
  * Created by Zachary Clow
  *
  * Defines a Comedy class that inherits from Movie.
- * Movie code is 'F'
+ * movieCode is F, sorting criteria are title and release year
+ *
  */
 
 #include "comedy.h"
@@ -29,13 +30,17 @@ Comedy::Comedy()
 
 Comedy::~Comedy() = default;
 
-
+//Returns a string representation of the Comedy. Format is:
+//"title year stock director F"
 string Comedy::toString() const{
    string str;
    str.push_back(movieCode);
    return title + " " + to_string(releaseYear) + " " + to_string(stock) + " " + director + " " + str;
 }
 
+//Returns true if the input's title comes first alphabetically,
+//false if it comes after. If they're the same, returns true
+//if the input's release year comes first, and false otherwise.
 bool Comedy::operator<(const Comedy &compare) const
 {
    if(title.compare(compare.getTitle()) < 0) {
@@ -48,11 +53,7 @@ bool Comedy::operator<(const Comedy &compare) const
    return false;
 }
 
-int Comedy::getYear() const
-{
-   return releaseYear;
-}
-
+//Outputs movie.toString()
 std::ostream& operator<<(ostream& output, const Comedy& movie)
 {
    output << movie.toString();
