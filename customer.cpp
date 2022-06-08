@@ -17,6 +17,10 @@ Customer::Customer()
    firstName = "Default";
    lastName = "Default";
    numTransactions = 0;
+   for(int i = 0; i < MAXHISTORY; i++) {
+      historyTypes[i] = "";
+      historyMovies[i] = nullptr;
+   }
 }
 
 Customer::~Customer()
@@ -31,6 +35,7 @@ Customer::Customer(string ID, std::string firstName, std::string lastName)
    this->ID = ID;
    this->firstName = firstName;
    this->lastName = lastName;
+   numTransactions = 0;
 }
 
 //Output the Customer's history to cout in chronological order.
