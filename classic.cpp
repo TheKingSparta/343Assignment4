@@ -1,3 +1,14 @@
+/**         classic.cpp
+ *
+ * Created by Jason Chu
+ *
+ * Defines a classic class for classic movies
+ * Child class that inherits from parent movie class
+ * movie code C, sorted by release month, release year, major actor's full name 
+ *
+ */
+
+
 #include "classic.h"
 #include "movie.h"
 
