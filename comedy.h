@@ -13,11 +13,12 @@
 #include "movie.h"
 #include <string>
 
-class Comedy: public Movie {
+class Comedy : public Movie
+{
 public:
    //Default constructor. Defined in Movie.h
    Comedy();
-    
+
    // Destructor
    ~Comedy();
 
@@ -31,7 +32,7 @@ public:
    //Returns true if the input's title comes first alphabetically,
    //false if it comes after. If they're the same, returns true
    //if the input's release year comes first, and false otherwise.
-   bool operator<(const Comedy &compare) const;
+   bool operator<(const Comedy& compare) const;
 
    //Outputs movie.toString()
    friend std::ostream& operator<<(std::ostream&, const Comedy&);

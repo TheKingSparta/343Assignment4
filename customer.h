@@ -17,7 +17,7 @@ class Customer : public Movie
 {
 public:
    //The max number of history items the customer can have.
-   static int const MAXHISTORY = 99999;
+   static int const MAXHISTORY = 9999;
 
    //Add a new borrow or return to the customer's history. movie should be
    //a shared_ptr that points to the movie, and type should be

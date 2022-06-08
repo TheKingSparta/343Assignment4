@@ -32,21 +32,26 @@ Comedy::~Comedy() = default;
 
 //Returns a string representation of the Comedy. Format is:
 //"title year stock director F"
-string Comedy::toString() const{
+string Comedy::toString() const
+{
    string str;
    str.push_back(movieCode);
-   return title + " " + to_string(releaseYear) + " " + to_string(stock) + " " + director + " " + str;
+   return title + " " + to_string(releaseYear) + " " + to_string(stock) + " " +
+          director + " " + str;
 }
 
 //Returns true if the input's title comes first alphabetically,
 //false if it comes after. If they're the same, returns true
 //if the input's release year comes first, and false otherwise.
-bool Comedy::operator<(const Comedy &compare) const
+bool Comedy::operator<(const Comedy& compare) const
 {
-   if(title.compare(compare.getTitle()) < 0) {
+   if(title.compare(compare.getTitle()) < 0)
+   {
       return true;
-   } else if(title.compare(compare.getTitle()) == 0) {
-      if(releaseYear < compare.getYear()) {
+   } else if(title.compare(compare.getTitle()) == 0)
+   {
+      if(releaseYear < compare.getYear())
+      {
          return true;
       }
    }
