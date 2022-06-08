@@ -39,9 +39,7 @@ Drama::Drama()
 
 //destructor
 Drama::~Drama()
-{
-
-}
+= default;
 
 string Drama::toString() const
 {

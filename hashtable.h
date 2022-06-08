@@ -61,21 +61,21 @@ template<class T>
 HashTable<T>::~HashTable()
 {
    node* curr;
-
+   node* next;
    for(int i = 0; i < MAXHASHSIZE; i++)
    {
-      while(array[i] != nullptr)
+      curr = array[i];
+      while(curr != nullptr)
       {
-         curr = array[i];
-         array[i] = array[i]->next;
-
          delete curr->data;
          curr->data = nullptr;
-
-         delete curr;
-
+         next = curr->next;
+         if(curr != nullptr)
+         {
+            delete curr;
+         }
+         curr = next;
       }
-
       array[i] = nullptr;
    }
 

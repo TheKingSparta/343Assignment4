@@ -14,9 +14,7 @@ Classic::Classic(int stock, string title, string director, string actor,
 }
 
 Classic::~Classic()
-{
-
-}
+= default;
 
 int Classic::getMonth() const
 {

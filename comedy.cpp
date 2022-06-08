@@ -27,9 +27,7 @@ Comedy::Comedy()
    director = "";
 }
 
-Comedy::~Comedy() {
-
-}
+Comedy::~Comedy() = default;
 
 
 string Comedy::toString() const{
