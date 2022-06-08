@@ -36,15 +36,20 @@ Customer::Customer(string ID, std::string firstName, std::string lastName)
 //typeOfHistory: movie.toString()
 void Customer::outputHistory() const
 {
-   for(int i = 0; i < numTransactions; i++) {
+   cout << "ID: " << ID << "\n";
+   cout << lastName << " ";
+   cout << firstName;
+   cout << "\n";
+   for(int i = numTransactions - 1; i >= 0; i--) {
       cout << historyTypes[i];
       cout << ": ";
-      cout << historyMovies[i].toString();
+      cout << historyMovies[i]->toString();
       cout << "\n";
    }
+   cout << "\n";
 }
 
-void Customer::addHistory(Movie movie, std::string type)
+void Customer::addHistory(Movie* movie, std::string type)
 {
    if(numTransactions >= MAXHISTORY) {
       cout << "numTransactions cannot exceed MAXHISTORY";
@@ -72,9 +77,10 @@ string Customer::getLastName() const
 
 std::ostream& operator<<(ostream& output, const Customer& customer)
 {
-   output << customer.ID << " ";
+   output << "ID: " << customer.ID << "\n";
    output << customer.lastName << " ";
    output << customer.firstName;
+
    return output;
 }
 

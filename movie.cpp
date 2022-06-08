@@ -71,7 +71,9 @@ string Movie::getActor() const
 
 string Movie::toString() const
 {
-   return " ";
+   string output;
+   output += title;
+   return output;
 }
 
 // mutator function to add stock

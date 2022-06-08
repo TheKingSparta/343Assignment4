@@ -93,6 +93,9 @@ T* HashTable<T>::retrieve(string key)
    int index = hash(num);
    node* curr;
    curr = array[index];
+   if(curr == nullptr) {
+      return nullptr;
+   }
    if(curr->key == key)
       return curr->data;
    while(curr->next != nullptr)

@@ -20,7 +20,7 @@ public:
    //Adds a new transaction to the Customer. First string is the movie's
    //identifier, second string is the transaction type, either "return"
    // or "check-out"
-   void addHistory(Movie movie, std::string type);
+   void addHistory(Movie* movie, std::string type);
 
    //Output the Customer's history to cout in chronological order
    //Format:
@@ -57,7 +57,7 @@ private:
    //The customer's transaction history. historyMovies stores the movies
    //checked out or returned by the customer, and historyTypes stores
    //whether the movie was checked out or returned.
-   Movie historyMovies[MAXHISTORY];
+   Movie* historyMovies[MAXHISTORY];
    //The customer's transaction history. historyMovies stores the movies
    //checked out or returned by the customer, and historyTypes stores
    //whether the movie was checked out or returned.
