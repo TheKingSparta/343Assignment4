@@ -18,9 +18,10 @@ public:
    //The max number of history items the customer can have.
    static int const MAXHISTORY = 99999;
 
-   //Adds a new transaction to the Customer. First string is the movie's
-   //identifier, second string is the transaction type, either "return"
-   // or "check-out"
+   //Add a new borrow or return to the customer's history. movie should be
+   //a shared_ptr that points to the movie, and type should be
+   //the type of transaction, ie "borrow" or "return"
+   //Customers cannot return movies they have not borrowed.
    void addHistory(shared_ptr<Movie> movie, std::string type);
 
    //Output the Customer's history to cout in chronological order
@@ -42,7 +43,7 @@ public:
 
    string getLastName() const;
 
-   //Extraction operator overload
+   //Output the customer's ID, lastname, and firstname
    friend std::ostream& operator<<(std::ostream&, const Customer&);
 
 private:
