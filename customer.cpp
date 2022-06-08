@@ -37,7 +37,7 @@ Customer::Customer(string ID, std::string firstName, std::string lastName)
 void Customer::outputHistory() const
 {
    cout << "ID: " << ID << "\n";
-   cout << lastName << " ";
+   cout << lastName << ", ";
    cout << firstName;
    cout << "\n";
    for(int i = numTransactions - 1; i >= 0; i--) {
@@ -54,6 +54,29 @@ void Customer::addHistory(Movie* movie, std::string type)
    if(numTransactions >= MAXHISTORY) {
       cout << "numTransactions cannot exceed MAXHISTORY";
       return;
+   }
+   //bool hasMovie = false;
+   int numTimesBorrowed = 0;
+   int numTimesReturned = 0;
+   if(type == "return")
+   {
+      for(int i = 0; i < numTransactions; i++)
+      {
+         if(historyMovies[i] == movie)
+         {
+            if(historyTypes[i] == "borrow")
+            {
+               numTimesBorrowed++;
+            } else if(historyTypes[i] == "return")
+            {
+               numTimesReturned++;
+            }
+         }
+      }
+      if(numTimesReturned == numTimesBorrowed) {
+         cout << "Cannot return movie that has not been borrowed\n\n";
+         return;
+      }
    }
    historyMovies[numTransactions] = movie;
    historyTypes[numTransactions] = type;

@@ -131,7 +131,7 @@ void fillMovieData(ifstream& movieFile, vector<Comedy*>& comedies,
          dramas.push_back(new Drama(stoi(stock), title, director, stoi(year)));
       } else
       {
-         cout << "Invalid movie code in movie data \n";
+         cout << "Invalid movie code in movie file\n\n";
       }
       stream.clear();
 
@@ -151,16 +151,27 @@ void outputInventory(vector<Comedy*>& comedies, vector<Drama*>& dramas,
 {
    for(Comedy* c: comedies)
    {
-      cout << *c;
+      cout << c->getStock() << ": ";
+      cout << c->getTitle() << ", ";
+      cout << c->getYear() << " " << c->getMovieCode() << "\n";
+      //cout << *c;
    }
    for(Drama* d: dramas)
    {
-      cout << *d;
+      cout << d->getStock() << ": ";
+      cout << d->getDirector() << ", ";
+      cout << d->getTitle() << " " << d->getMovieCode() << "\n";
+      //cout << *d;
    }
    for(Classic* c: classics)
    {
-      cout << *c;
+      cout << c->getStock() << ": ";
+      cout << c->getMonth() << " ";
+      cout << c->getYear() << ", ";
+      cout << c->getActor() << " " << c->getMovieCode() << "\n";
+      //cout << *c;
    }
+   cout << "\n";
 }
 
 //R [ID] D [movie info]: Return
@@ -224,7 +235,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
          stream >> media;
          if(media != 'D')
          {
-            cout << "Invalid media type\n";
+            cout << "Invalid media type\n\n";
             continue;
          }
          stream >> code;
@@ -248,15 +259,18 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(movie == nullptr) {
                cout << "No movie with title ";
                cout << title;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
-            movie->removeStock(1);
+            if(!movie->removeStock(1)) {
+               cout << "Movie not in stock\n\n";
+               continue;
+            }
             customer = customers.retrieve(ID);
             if(customer == nullptr) {
                cout << "No customer with ID ";
                cout << ID;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             customer->addHistory(movie, "borrow");
@@ -280,15 +294,18 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(movie == nullptr) {
                cout << "No movie with title ";
                cout << title;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
-            movie->removeStock(1);
+            if(!movie->removeStock(1)) {
+               cout << "Movie not in stock\n\n";
+               continue;
+            }
             customer = customers.retrieve(ID);
             if(customer == nullptr) {
                cout << "No customer with ID ";
                cout << ID;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             customer->addHistory(movie, "borrow");
@@ -308,21 +325,24 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(movie == nullptr) {
                cout << "No movie with title ";
                cout << title;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
-            movie->removeStock(1);
+            if(!movie->removeStock(1)) {
+               cout << "Movie not in stock\n\n";
+               continue;
+            }
             customer = customers.retrieve(ID);
             if(customer == nullptr) {
                cout << "No customer with ID ";
                cout << ID;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             customer->addHistory(movie, "borrow");
          } else
          {
-            cout << "Invalid movie code in command data\n";
+            cout << "Invalid movie code in command file\n\n";
             continue;
          }
 
@@ -333,7 +353,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
          stream >> media;
          if(media != 'D')
          {
-            cout << "Invalid media type\n";
+            cout << "Invalid media type\n\n";
             continue;
          }
          stream >> code;
@@ -357,7 +377,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(movie == nullptr) {
                cout << "No movie with title ";
                cout << title;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             movie->addStock(1);
@@ -365,7 +385,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(customer == nullptr) {
                cout << "No customer with ID ";
                cout << ID;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             customer->addHistory(movie, "return");
@@ -389,7 +409,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(movie == nullptr) {
                cout << "No movie with title ";
                cout << title;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             movie->addStock(1);
@@ -397,7 +417,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(customer == nullptr) {
                cout << "No customer with ID ";
                cout << ID;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             customer->addHistory(movie, "return");
@@ -417,7 +437,7 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(movie == nullptr) {
                cout << "No movie with title ";
                cout << title;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             movie->addStock(1);
@@ -425,19 +445,18 @@ void executeCommands(ifstream& commandFile, HashTable<Customer>& customers,
             if(customer == nullptr) {
                cout << "No customer with ID ";
                cout << ID;
-               cout << "\n";
+               cout << "\n\n";
                continue;
             }
             customer->addHistory(movie, "return");
          } else
          {
-            cout << "Invalid movie code in command data\n";
+            cout << "Invalid movie code in command file\n\n";
             continue;
          }
       } else
       {
-         cout << "Invalid command code";
-         cout << "\n";
+         cout << "Invalid command code\n\n";
       }
 
       /*
@@ -486,7 +505,7 @@ int main()
    fillCustomerData(customerFile, customers);
    cout << "\n";
    fillMovieData(moviesFile, comedies, dramas, classics);
-   cout << "\n";
+   //cout << "\n";
    //customers.printHash();
    executeCommands(transactionsFile, customers, comedies, dramas, classics);
 }
