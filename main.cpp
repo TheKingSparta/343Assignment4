@@ -1,3 +1,7 @@
+/***    main.cpp
+ * Written equally by everyone in team
+ */
+
 #include <string>
 #include <iostream>
 #include "customer.h"
