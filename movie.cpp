@@ -1,3 +1,12 @@
+/**         movie.h
+ *
+ * Created by Jason Chu
+ *
+ * Defines a movie class
+ * Parent class for comedy.h, classic.h, and drama.h to inherit
+ *
+ */
+
 #include "movie.h" 
 #include "classic.h"
 #include <iomanip>
