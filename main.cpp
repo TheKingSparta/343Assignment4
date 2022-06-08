@@ -503,6 +503,8 @@ int main()
    //cout << "\n";
    //customers.printHash();
    executeCommands(transactionsFile, customers, comedies, dramas, classics);
+
+   return 0;
 }
 
 
