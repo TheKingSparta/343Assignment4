@@ -107,10 +107,12 @@ void fillMovieData(ifstream& movieFile, vector<Comedy*>& comedies,
          stream >> majorActorLastName;
          stream >> month;
          stream >> year;
-         classics.push_back(new Classic(stoi(stock), title, director,
-                                        majorActorFirstName + " " +
-                                        majorActorLastName, stoi(year),
-                                        stoi(month)));
+         Classic* movie = new Classic(stoi(stock), title, director,
+                             majorActorFirstName + " " +
+                             majorActorLastName, stoi(year),
+                             stoi(month));
+         classics.push_back(movie);
+         delete movie;
       } else if(code == 'F')
       {
          //getline(stream, token, ',');
