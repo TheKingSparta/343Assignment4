@@ -1,4 +1,4 @@
-/** drama.h
+/** drama.cpp
  * Defines a Drama class that describes a drama movie. Includes functions for
  *movie class *
  * Written by Aditya Duggirala
