@@ -32,6 +32,7 @@ Customer::~Customer()
    //}
 }
 
+// Constructor
 Customer::Customer(string ID, std::string firstName, std::string lastName)
 {
    this->ID = ID;
