@@ -27,8 +27,10 @@ class Drama:public Movie {
    //destructor
    ~Drama();
 
+   // print out info in Drama movie
    string toString() const;
 
+   // For sorting vectors
    bool operator<(const Drama &compare) const;
 
    //Extraction operator overload
