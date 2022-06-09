@@ -19,6 +19,7 @@ class HashTable {
     node* next;
     string key;
     
+    // Takes in customer object and key for hashing
     node(T* customer, node* n, string key): data(customer), next(n), key(key) {};
   };
   public:
@@ -96,12 +97,12 @@ T* HashTable<T>::retrieve(string key)
    int index = hash(num);
    node* curr;
    curr = array[index];
-   if(curr == nullptr) {
+   if(curr == nullptr) { 
       return nullptr;
    }
    if(curr->key == key)
       return curr->data;
-   while(curr->next != nullptr)
+   while(curr->next != nullptr) // not at end of array
    {
       if(curr->next->key == key)
          return curr->next->data;
@@ -111,6 +112,7 @@ T* HashTable<T>::retrieve(string key)
 
 }
 
+// insert customer object with data and key
 template<class T>
 void HashTable<T>::insertItem(string key, T* data)
 {
@@ -148,11 +150,12 @@ void HashTable<T>::insertItem(string key, T* data)
 
 }
 
+// delete customer object
 template<class T>
 void HashTable<T>::deleteItem(string key)
 {
-   if(retrieve(key) != nullptr)
-      delete retrieve(key);
+   if(retrieve(key) != nullptr) // if customer is in array
+      delete retrieve(key); // call retrieve to find customer
 
 
 }
