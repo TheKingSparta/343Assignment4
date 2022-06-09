@@ -68,7 +68,7 @@ HashTable<T>::~HashTable()
    for(int i = 0; i < MAXHASHSIZE; i++)
    {
       curr = array[i];
-      while(curr != nullptr)
+      while(curr != nullptr) // if current node isn't empty, delete linked list in array[i]
       {
          delete curr->data;
          curr->data = nullptr;
@@ -92,9 +92,9 @@ T* HashTable<T>::retrieve(string key)
    int num = 0;
    for(int i = 0; i < key.length(); i++)
    {
-      num += key[i];
+      num += key[i]; // ID of customer
    }
-   int index = hash(num);
+   int index = hash(num); // hash using ID to get position in hashtable
    node* curr;
    curr = array[index];
    if(curr == nullptr) { 
@@ -119,19 +119,19 @@ void HashTable<T>::insertItem(string key, T* data)
    int num = 0;
    for(int i = 0; i < key.length(); i++)
    {
-      num += key[i];
+      num += key[i]; // ID  of customer
    }
-   int index = hash(num);
+   int index = hash(num); //hash using ID to get position in hashtable
    if(array[index] != nullptr)
    {
       node* curr;
       curr = array[index];
-      if(curr->data == nullptr)
+      if(curr->data == nullptr) // curr's data is empty, so fill in data and key
       {
          curr->data = data;
          curr->key = key;
       }
-      while(curr->next != nullptr)
+      while(curr->next != nullptr) // not at end of array[index]
       {
          if(curr->next->data == nullptr)
          {
@@ -141,6 +141,7 @@ void HashTable<T>::insertItem(string key, T* data)
          }
          curr = curr->next;
       }
+     // curr->next and curr are nullptr, make it a new node since it's at the end of the linked list
       curr->next = new node(data, nullptr, key);
    } else
    {
