@@ -9,6 +9,7 @@
 
 #include "comedy.h"
 
+// constructor
 Comedy::Comedy(int stock, std::string title, std::string director,
                int releaseYear)
 {
@@ -19,6 +20,7 @@ Comedy::Comedy(int stock, std::string title, std::string director,
    this->releaseYear = releaseYear;
 }
 
+// default constructor
 Comedy::Comedy()
 {
    stock = 0;
@@ -28,6 +30,7 @@ Comedy::Comedy()
    director = "";
 }
 
+// destructor
 Comedy::~Comedy() = default;
 
 //Returns a string representation of the Comedy. Format is:
