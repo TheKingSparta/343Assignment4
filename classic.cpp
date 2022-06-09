@@ -12,6 +12,7 @@
 #include "classic.h"
 #include "movie.h"
 
+//Constructor
 Classic::Classic(int stock, string title, string director, string actor,
                  int releaseYear, int monthReleased)
 {
@@ -24,6 +25,7 @@ Classic::Classic(int stock, string title, string director, string actor,
    this->monthReleased = monthReleased;
 }
 
+// destructor
 Classic::~Classic()
 = default;
 
@@ -37,6 +39,7 @@ string Classic::getActor() const
    return actor;
 }
 
+// print info of classic movie
 string Classic::toString() const
 {
    string str;
@@ -46,6 +49,7 @@ string Classic::toString() const
           " " + str;
 }
 
+// check to see if two classic movies are equal to each other
 bool Classic::operator==(const Movie& compare) const
 {
    if(monthReleased == compare.getMonth() &&
@@ -59,6 +63,7 @@ bool Classic::operator==(const Movie& compare) const
    }
 }
 
+// both overloaded operators are used for sorting
 bool Classic::operator>(const Movie& compare) const
 {
    if(releaseYear > compare.getYear())
@@ -97,6 +102,7 @@ bool Classic::operator<(const Classic& compare) const
 
 }
 
+// for outputing data in classic movie
 std::ostream& operator<<(ostream& output, const Classic& movie)
 {
    output << movie.toString();
